@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        World Photo
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <nav>
+        <ul class="navbar">
+            <li><a href="{% url 'home' %}">World Photo</a></li>
+            <li><a href="{% url 'specialists' %}">Специалисты</a></li>
+            <li><a href="{% url 'news' %}">Новости</a></li>
+            <li><a href="{% url 'gallery' %}">Фотографии</a></li>
+            <li><a href="{% url 'register' %}">Зарегистрироваться</a></li>
+            <li><a href="{% url 'login' %}">Войти</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
