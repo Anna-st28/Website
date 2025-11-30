@@ -1,26 +1,36 @@
 from django.shortcuts import render, redirect
-from .forms import UserRegistrationForm
+
+from .forms import UserRegistrationForm, PhotographerProfileForm
+from .models import PhotographerProfile
 
 
 def register(request):
     if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
+        user_form = UserRegistrationForm(request.POST)
+        profile_form = PhotographerProfileForm(request.POST, request.FILES)
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save(commit=False)
+            user.set_password(user_form.cleaned_data['password'])
+            user.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
             return redirect('login')
     else:
-        form = UserRegistrationForm()
-
-    return render(request, 'users/register.html', {'form': form})
+        user_form = UserRegistrationForm()
+        profile_form = PhotographerProfileForm()
+    return render(request, 'users/register.html',
+                  {'user_form': user_form, 'profile_form': profile_form})
 
 
 def specialists(request):
-    return render(request, 'specialists.html')
+    photographers = PhotographerProfile.objects.all()
+    return render(request, 'specialists.html', {'photographers': photographers})
 
 
-def news(request):
-    return render(request, 'news.html')
+def news():
+    return None
 
 
-def gallery(request):
-    return render(request, 'gallery.html')
+def gallery():
+    return None

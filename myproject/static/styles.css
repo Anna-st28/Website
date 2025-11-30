@@ -1,17 +1,36 @@
 body {
     font-family: Arial, sans-serif;
-    color: black;
-    background-color: white;
+    color: #333;
+    background-color: #fff;
+    margin: 0;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
-    background-color: lightgrey;
-    padding: 10px;
+    background-color: #e0bbd8; /* бордовый цвет */
+    padding: 15px;
     list-style-type: none;
 }
 
-.navbar li {
-    margin: 0 15px;
+.navbar li a {
+    text-decoration: none;
+    color: #333;
+    padding: 8px;
+}
+
+.navbar li a:hover {
+    background-color: #d5c0e3; /* легкий бордовый цвет */
+}
+
+.photographer-profile {
+    border: 1px solid #eaeaea; /* светлый фон */
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.photographer-profile img {
+    max-width: 100%;
+    border-radius: 4px;
 }

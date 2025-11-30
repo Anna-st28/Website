@@ -1,8 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
 <h1>Специалисты</h1>
-<p>Список специалистов</p>
-
+{% for photographer in photographers %}
+    <div class="photographer-profile">
+        <h2>{{ photographer.user.username }}</h2>
+        <p>{{ photographer.short_intro }}</p>
+        <img src="{{ photographer.profile_image.url }}" alt="{{ photographer.user.username }}" width="150" />
+        <h3>Последние работы:</h3>
+        {% for photo in photographer.photos.all|slice:":3" %}
+            <img src="{{ photo.image.url }}" alt="Фото от {{ photographer.user.username }}" width="100" />
+        {% empty %}
+            <p>Нет фотографий.</p>
+        {% endfor %}
+    </div>
+{% endfor %}
 {% endblock %}
