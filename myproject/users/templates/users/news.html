@@ -1,0 +1,17 @@
+{% block content %}
+<h1>Новости</h1>
+{% for item in news %}
+    <div class="news-item">
+        <h2>
+            <a href="{{ item.link }}" target="_blank" rel="noopener">
+                {{ item.title }}
+            </a>
+        </h2>
+        <p>{{ item.summary }}</p>
+    </div>
+{% empty %}
+    <p>Нет новостей.</p>
+{% endfor %}
+{% endblock %}
+
+

@@ -19,3 +19,12 @@ class Photo(models.Model):
 
     def __str__(self):
         return f"Photo by {self.photographer.user.username}"
+
+
+class News(models.Model):
+    title = models.CharField(max_length=255)
+    link = models.URLField()
+    summary = models.TextField()
+
+    def __str__(self):
+        return self.title
